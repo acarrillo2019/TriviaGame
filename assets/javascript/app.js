@@ -19,12 +19,35 @@ On the final screen, show the number of correct answers, incorrect answers, and 
 
 $(document).ready(function() {
 
-    
-var qAndA = {
-    question: "In Aladdin, what is the name of Jasmine's pet tiger?",
-    choices: ["Rajah", "Bo", "Iago", "Jack"],
-    images: ["../images/Rajah.gif"],
-    correct: 0 }
+    const answerQuestionTime = 30000; // 30 seconds
+const displayAnswerTime = 15000; // 15 seconds
+const second = 1000;
+
+var questionTimer;
+var answerTimer;
+var secondTimer;
+var timeRemaining;
+
+var questionIndex = 0;
+var numCorrect = 0;
+var numWrong = 0;
+
+//Trivia questions
+var q1 = new TriviaQuestion("What is Issac's girlfriend's name:","Amanda","Rose","Nicole","Karen","Nicole","","assets/images/moon.jpg");
+var q2 = new TriviaQuestion("What is the name of the ship Issac is piloting in the beginning of Dead Space?","USG Merkin","USG Kellion","USG Ishimura","USG Marrion","USG Kellion","After a guidance system malfunction USG Kellion crashes into the Ishimura dock.","assets/images/mango.jpg");
+   
+
+// The following code loads the code above,the 'new' TriviaQuestion variables, and pairs the info with values stored in the TriviaQuestion function in sequential order
+function TriviaQuestion (question,ans1,ans2,ans3,ans4,correctAns,ansInfo,ansImg) {
+    this.question = question;
+    this.ans1 = ans1;
+    this.ans2 = ans2;
+    this.ans3 = ans3;
+    this.ans4 = ans4;
+    this.correctAns = correctAns;
+    this.ansInfo = ansInfo;
+    this.ansImg = ansImg;
+}
 
 
 
