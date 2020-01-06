@@ -1,0 +1,18 @@
+body {
+    background-color: black;
+    background-image: url(../images/stars.jpg);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: white;
+}
+
+.jumbotron {
+    background-image: url(../images/deadspacelogo.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 250px;
+    text-align: center;
+    color: black;
+}
