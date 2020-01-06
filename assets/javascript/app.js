@@ -20,5 +20,14 @@ On the final screen, show the number of correct answers, incorrect answers, and 
 $(document).ready(function() {
 
     
+var qAndA = {
+    question: "In Aladdin, what is the name of Jasmine's pet tiger?",
+    choices: ["Rajah", "Bo", "Iago", "Jack"],
+    images: ["../images/Rajah.gif"],
+    correct: 0 }
+
+
+
+
 });
 
