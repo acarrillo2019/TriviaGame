@@ -19,7 +19,9 @@ On the final screen, show the number of correct answers, incorrect answers, and 
 
 $(document).ready(function() {
 
-    const answerQuestionTime = 30000; // 30 seconds
+});
+
+const answerQuestionTime = 30000; // 30 seconds
 const displayAnswerTime = 15000; // 15 seconds
 const second = 1000;
 
@@ -49,8 +51,41 @@ function TriviaQuestion (question,ans1,ans2,ans3,ans4,correctAns,ansInfo,ansImg)
     this.ansImg = ansImg;
 }
 
+// Display a triva question
+function displayQuestion(q) {
+    var questionNum = questionIndex+1; // Used to display the question number
+    var answerArray = [q.ans1,q.ans2,q.ans3,q.ans4] // Temporary array used to randomize the answer order
+
+    shuffleArray(answerArray); // Shuffle the order of the answers
+
+    clearTimeout(answerTimer); // Stop the question timer
+    clearInterval(secondTimer); // Stop the second timer
+
+    questionTimer = setTimeout(function(){displayAnswer(false, 1, questions[questionIndex])}, answerQuestionTime); // Set time allowed to answer question
+    secondTimer = setInterval(secondCountdown, second); // Set interval time to count down seconds
+    timeRemaining = answerQuestionTime/1000; //convert to seconds the time allowed to answer the question
+
+    $("#nextQuestionTime").hide(); // Hide the next question timer
+    $("#timeRemaining").html("Time Remaining: "+timeRemaining+" seconds").show().css("color","black"); // Display the time remaining to answer question
+
+    $("#questionNumber").html(questionNum+". ").show();; // Display question number
+    $("#triviaQuestion").html(q.question).show(); // Display the trivia question with possible answers
+    $("#btn1").html(answerArray[0]).attr("data-btnVal",answerArray[0]).show();
+    $("#btn2").html(answerArray[1]).attr("data-btnVal",answerArray[1]).show();
+    $("#btn3").html(answerArray[2]).attr("data-btnVal",answerArray[2]).show();
+    $("#btn4").html(answerArray[3]).attr("data-btnVal",answerArray[3]).show();
+    enableButtons();
+}
+
+// Durstenfeld shuffle
+function shuffleArray(array) {
+    for (var i = array.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+}
 
 
-
-});
 
