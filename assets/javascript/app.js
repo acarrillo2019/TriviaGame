@@ -77,7 +77,7 @@ function displayQuestion(q) {
     enableButtons();
 }
 
-// Durstenfeld shuffle
+/* Durstenfeld shuffle
 function shuffleArray(array) {
     for (var i = array.length - 1; i > 0; i--) {
         var j = Math.floor(Math.random() * (i + 1));
@@ -85,7 +85,19 @@ function shuffleArray(array) {
         array[i] = array[j];
         array[j] = temp;
     }
-}
+} */
+
+// Fisher-Yates shuffle algorithm
+function shuffleArray (array) {
+    var i = 0, j = 0, temp = null
+  
+    for (i = array.length - 1; i > 0; i -= 1) {
+      j = Math.floor(Math.random() * (i + 1))
+      temp = array[i]
+      array[i] = array[j]
+      array[j] = temp
+    }
+  }
 
 
 
