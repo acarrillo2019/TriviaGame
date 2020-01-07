@@ -3,8 +3,9 @@ body {
     background-image: url(../images/stars.jpg);
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6, p {
     color: white;
+    text-shadow: 2px 2px 10px white;
 }
 
 .jumbotron {
@@ -15,4 +16,25 @@ h1, h2, h3, h4, h5, h6 {
     height: 250px;
     text-align: center;
     color: black;
+}
+
+
+
+
+.container {
+    width: 100%;
+}
+
+
+.crystals {
+    height: 100px;
+}
+
+
+.timeRemaining {
+    color: white;
+}
+
+.info {
+    color: white;
 }

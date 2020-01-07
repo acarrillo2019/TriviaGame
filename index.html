@@ -14,11 +14,9 @@
     <div class="jumbotron jumbotron-fluid"></div>
     <div class="container">
       <div class="row">
-       <header><h1 class="text-center">Trivia!</h1></header>
+        <div class="col-md-12 text-center"><h1>DEAD SPACE Trivia!</h1></div>
       </div>
-      <div class="row">
       <h5 id="timeRemaining" class="text-center"></h5>
-      </div>
         <div class="row">
             <div class="col-md-1 pr-0">
                 <h3 id="questionNumber"></h3>
@@ -27,9 +25,6 @@
                 <h3 id="triviaQuestion"></h3>
             </div>
         </div>
-      <div class="row">
-      <div class="timer"></div>
-    </div>
     <div class="row">
       <div class="question"></div>
     </div>
@@ -49,7 +44,26 @@
           <button id="btn4" class="btn btn-success btn-block my-2"></button>
       </div>
   </div>
-          
+    
+  <h3 id="result"></h3>
+  <div class="row">
+      <div class="col-md-9">
+          <p id="info"></p>
+          <h5 id="nextQuestionTime"></h5>
+      </div>
+      <div class="col-md-3">
+          <div id="answerImg" class="float-right img-fluid"></div>
+      </div>
+  </div>
+
+  <h3 id="correctAns" class="text-center"></h3>
+  <h3 id="wrongAns" class="text-center"></h3>
+  <div class="row">
+      <div class="col-md text-center mt-5">
+          <button id="restartQuiz" class="btn btn-secondary">Restart Quiz?</button>
+      </div>
+  </div>
+
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>

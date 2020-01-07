@@ -19,10 +19,30 @@ On the final screen, show the number of correct answers, incorrect answers, and 
 
 $(document).ready(function() {
 
+    restartQuiz();
+
+    $("button").on("click", function() {
+    
+        // If Restart Quiz button pressed, then restart the quiz
+        if ($(this).attr("id") === "restartQuiz") {
+            restartQuiz();
+        }
+        // Quiz answer button pressed, check answer
+        else {
+            var answer = checkAnswer($(this).attr("data-btnVal"),questions[questionIndex]);
+            displayAnswer (answer, 0, questions[questionIndex])
+        }
+    
+      });
+
+
 });
 
+// Global Variables & Constants
+
+// Question timer and second time variables/constants
 const answerQuestionTime = 30000; // 30 seconds
-const displayAnswerTime = 15000; // 15 seconds
+const displayAnswerTime = 5000; // 15 seconds
 const second = 1000;
 
 var questionTimer;
@@ -35,9 +55,14 @@ var numCorrect = 0;
 var numWrong = 0;
 
 //Trivia questions
-var q1 = new TriviaQuestion("What is Issac's girlfriend's name:","Amanda","Rose","Nicole","Karen","Nicole","","assets/images/moon.jpg");
-var q2 = new TriviaQuestion("What is the name of the ship Issac is piloting in the beginning of Dead Space?","USG Merkin","USG Kellion","USG Ishimura","USG Marrion","USG Kellion","After a guidance system malfunction USG Kellion crashes into the Ishimura dock.","assets/images/mango.jpg");
+var q1 = new TriviaQuestion("What is Issac's girlfriend's name:","Amanda","Rose","Nicole","Karen","Nicole","Nicole Brennan is Isaac's girlfriend and a medical specialist assigned to the USG Ishimura.","assets/images/nicole.jpg");
+var q2 = new TriviaQuestion("What is the name of the ship Issac is piloting in the beginning of Dead Space?","USG Merkin","USG Kellion","USG Ishimura","USG Marrion","USG Kellion","After a guidance system malfunction USG Kellion crashes into the Ishimura dock.","assets/images/ishimura.jpg");
    
+var questions = [q1,q2];
+
+console.log(questions[q1]);
+
+// Functions & Objects
 
 // The following code loads the code above,the 'new' TriviaQuestion variables, and pairs the info with values stored in the TriviaQuestion function in sequential order
 function TriviaQuestion (question,ans1,ans2,ans3,ans4,correctAns,ansInfo,ansImg) {
@@ -49,6 +74,18 @@ function TriviaQuestion (question,ans1,ans2,ans3,ans4,correctAns,ansInfo,ansImg)
     this.correctAns = correctAns;
     this.ansInfo = ansInfo;
     this.ansImg = ansImg;
+}
+
+// Gets & Displays the next trivia question
+function nextQuestion(){
+    clearAnswer();
+    questionIndex++;
+
+    if (questionIndex < questions.length) {
+        displayQuestion(questions[questionIndex]);
+    } else {
+        gameOver();
+    }
 }
 
 // Display a triva question
@@ -77,15 +114,123 @@ function displayQuestion(q) {
     enableButtons();
 }
 
-/* Durstenfeld shuffle
-function shuffleArray(array) {
-    for (var i = array.length - 1; i > 0; i--) {
-        var j = Math.floor(Math.random() * (i + 1));
-        var temp = array[i];
-        array[i] = array[j];
-        array[j] = temp;
+// Clears the question
+function clearQuestion() {
+    $("#questionNumber").hide();
+    $("#triviaQuestion").hide();
+    $("#btn1").hide();
+    $("#btn2").hide();
+    $("#btn3").hide();
+    $("#btn4").hide();
+}
+
+// Displays the triva answer, info and image
+// Parameters: a: answer (true/false), r: reason (0 = wrong answer/1 = time's up), q: current question
+function displayAnswer(a,r,q) {
+    if (a) {            // Correct answer selected
+        $("#result").html("Correct!").css("color","green");
     }
-} */
+    else if(r === 0) {      // Wrong Answer selected
+        $("#result").html("Wrong!").css("color","red");
+    }
+    else {          // Answer not selected in time allowed
+        $("#result").html("Times's Up!").css("color","red");
+        numWrong++;
+    }
+    
+    clearTimeout(questionTimer); // Stop the question timer
+    clearInterval(secondTimer); // Stop the second timer
+
+    answerTimer = setTimeout(nextQuestion, displayAnswerTime); // Set the display answer timer   
+    secondTimer = setInterval(secondCountdown, second); // Reset the second timer 
+
+    timeRemaining = displayAnswerTime/1000; // Time for answer to be displayed
+
+    $("#timeRemaining").hide(); // hide the question remaining time counter
+    $("#info").html(q.ansInfo);
+    $("#nextQuestionTime").html("Next Question in: "+timeRemaining+" seconds").css("color","green").show();
+    $("#answerImg").html("<img src='"+q.ansImg+"'>");
+}
+
+// Clears the displayed answer
+function clearAnswer() {
+    $("#result").empty();
+    $("#info").empty();
+    $("#answerImg").empty();
+    $("#nextQuestionTime").hide();
+}
+
+// Display the game statistics, display button to restart quiz
+function displayStats() {
+    $("#correctAns").html("Correct Answers: "+numCorrect).css("color","green");
+    $("#wrongAns").html("Wrong Answers: "+numWrong).css("color","red");
+    $("#restartQuiz").show();
+}
+
+// Clear the game statistics
+function clearStats() {
+    $("#correctAns").empty();
+    $("#wrongAns").empty();
+    $("#restartQuiz").hide();
+    numCorrect = 0;
+    numWrong = 0;
+}
+
+// Returns True if the correct answer selected, else returns False
+// btnVal: value of the button clicked, question: current question object
+function checkAnswer(btnVal,question){
+    disableButtons();
+    if (btnVal === question.correctAns) {
+        numCorrect++;
+        return true;
+    }
+    else {
+        numWrong++;
+        return false;
+    }
+}
+
+function restartQuiz() {
+    clearStats();   // Clear the correct/wrong answer stats
+    questionIndex = 0; // reset the question index for new quiz
+    shuffleArray(questions); // Shuffle the questions so its not the same quiz
+    displayQuestion(questions[questionIndex]); // display the first question
+
+}
+
+// Game Over, displays the correct/wrong answer percentages, option to restart the game
+function gameOver() {
+    clearQuestion(); // Clear the question
+    displayStats(); // Show the correct/wrong answer stats
+    clearTimeout(secondTimer); // Stop the second timer
+    
+}
+
+function secondCountdown() {
+    timeRemaining--;
+
+    if (timeRemaining <= 10) {       // Warn user time is running out
+        $("#timeRemaining").html("Time Remaining: "+timeRemaining+" seconds").css("color","red");
+    }
+    else {
+        $("#timeRemaining").html("Time Remaining: "+timeRemaining+" seconds").css("color","white");   
+    }
+    $("#nextQuestionTime").html("Next Question in: "+timeRemaining+" seconds");
+}
+
+function disableButtons() {
+    $("#btn1").prop("disabled",true);
+    $("#btn2").prop("disabled",true);
+    $("#btn3").prop("disabled",true);
+    $("#btn4").prop("disabled",true);
+}
+
+function enableButtons() {
+    $("#btn1").prop("disabled",false);
+    $("#btn2").prop("disabled",false);
+    $("#btn3").prop("disabled",false);
+    $("#btn4").prop("disabled",false);
+}
 
 // Fisher-Yates shuffle algorithm
 function shuffleArray (array) {
@@ -98,6 +243,4 @@ function shuffleArray (array) {
       array[j] = temp
     }
   }
-
-
 
