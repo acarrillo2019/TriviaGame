@@ -19,6 +19,10 @@ On the final screen, show the number of correct answers, incorrect answers, and 
 
 $(document).ready(function() {
 
+    var startSound = document.createElement("audio");
+        startSound.setAttribute("src","assets/sounds/port.mp3");
+        startSound.play();
+
     restartQuiz();
 
     $("button").on("click", function() {
@@ -71,7 +75,7 @@ $("#btn1").mouseover (function (){
 });
 $("#btn2").mouseover (function (){  
     var btn2Sound = document.createElement("audio");
-    btn2Sound.setAttribute("src", "assets/sounds/choose2.mp3");
+    btn2Sound.setAttribute("src", "assets/sounds/choose1.mp3");
     btn2Sound.play();
 });
 $("#btn3").mouseover (function (){  
@@ -81,7 +85,7 @@ $("#btn3").mouseover (function (){
 });
 $("#btn4").mouseover (function (){  
     var btn4Sound = document.createElement("audio");
-    btn4Sound.setAttribute("src", "assets/sounds/sound2.mp3");
+    btn4Sound.setAttribute("src", "assets/sounds/choose2.mp3");
     btn4Sound.play();
 });
 
@@ -151,14 +155,17 @@ function clearQuestion() {
 function displayAnswer(a,r,q) {
     if (a) {            // Correct answer selected
         $("#result").html("Correct!").css("color","green");
+        $("#nextQuestionTime").hide();
+        $("#timeRemaining").hide();
+        $("#restartQuiz").hide();
         var correctSound = document.createElement("audio");
-        correctSound.setAttribute("src", "assets/sounds/alarm2.mp3");
+        correctSound.setAttribute("src", "assets/sounds/light.mp3");
         correctSound.play()
     }
     else if(r === 0) {      // Wrong Answer selected
         $("#result").html("Wrong!").css("color","red");
         var incorrectSound = document.createElement("audio");
-        incorrectSound.setAttribute("src","assets/sounds/alarm1.mp3");
+        incorrectSound.setAttribute("src","assets/sounds/discover.mp3");
         incorrectSound.play();
     }
     else {          // Answer not selected in time allowed
@@ -227,7 +234,9 @@ function restartQuiz() {
     questionIndex = 0; // reset the question index for new quiz
     shuffleArray(questions); // Shuffle the questions so its not the same quiz
     displayQuestion(questions[questionIndex]); // display the first question
-
+    var startSound = document.createElement("audio");
+        startSound.setAttribute("src","assets/sounds/port.mp3");
+        startSound.play();
 }
 
 // Game Over, displays the correct/wrong answer percentages, option to restart the game
@@ -235,7 +244,9 @@ function gameOver() {
     clearQuestion(); // Clear the question
     displayStats(); // Show the correct/wrong answer stats
     clearTimeout(secondTimer); // Stop the second timer
-    
+    var endSound = document.createElement("audio");
+        endSound.setAttribute("src","assets/sounds/reading.mp3");
+        endSound.play();
 }
 
 function secondCountdown() {
