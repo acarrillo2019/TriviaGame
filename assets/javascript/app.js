@@ -55,8 +55,8 @@ var numCorrect = 0;
 var numWrong = 0;
 
 //Trivia questions
-var q1 = new TriviaQuestion("What is Issac's girlfriend's name:","Amanda","Rose","Nicole","Karen","Nicole","Nicole Brennan is Isaac's girlfriend and a medical specialist assigned to the USG Ishimura.","assets/images/nicole.jpg");
-var q2 = new TriviaQuestion("What is the name of the ship Issac is piloting in the beginning of Dead Space?","USG Merkin","USG Kellion","USG Ishimura","USG Marrion","USG Kellion","After a guidance system malfunction USG Kellion crashes into the Ishimura dock.","assets/images/ishimura.jpg");
+var q1 = new TriviaQuestion("Issac's girlfriend is:","Amanda","Rose","Nicole","Karen","Nicole","Nicole Brennan is Isaac's girlfriend and a medical specialist assigned to the USG Ishimura.","assets/images/nicole.jpg");
+var q2 = new TriviaQuestion("The ship Issac is piloting at the beginning of Dead Space:","USG Merkin","USG Kellion","USG Ishimura","USG Marrion","USG Kellion","After a guidance system malfunction USG Kellion crashes into the Ishimura dock.","assets/images/ishimura.jpg");
    
 var questions = [q1,q2];
 

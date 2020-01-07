@@ -1,6 +1,7 @@
 body {
     background-color: black;
     background-image: url(../images/stars.jpg);
+    font-family: 'Orbitron', sans-serif;
 }
 
 h1, h2, h3, h4, h5, h6, p {
@@ -13,23 +14,16 @@ h1, h2, h3, h4, h5, h6, p {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    height: 250px;
+    height: 180px;
     text-align: center;
     color: black;
 }
 
-
-
-
 .container {
     width: 100%;
+    opacity: .8;
+ /*   margin-top: -10px; */
 }
-
-
-.crystals {
-    height: 100px;
-}
-
 
 .timeRemaining {
     color: white;
@@ -38,3 +32,4 @@ h1, h2, h3, h4, h5, h6, p {
 .info {
     color: white;
 }
+
