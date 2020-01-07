@@ -60,7 +60,6 @@ var q2 = new TriviaQuestion("The ship Issac is piloting at the beginning of Dead
    
 var questions = [q1,q2];
 
-console.log(questions[q1]);
 
 // Functions & Objects
 
@@ -129,9 +128,13 @@ function clearQuestion() {
 function displayAnswer(a,r,q) {
     if (a) {            // Correct answer selected
         $("#result").html("Correct!").css("color","green");
+        var correctSound = document.createElement("audio");
+        correctSound.setAttribute("src", "assets/sounds/alarm3.mp3");
     }
     else if(r === 0) {      // Wrong Answer selected
         $("#result").html("Wrong!").css("color","red");
+        var incorrectSound = document.createElement("audio");
+        incorrectSound.setAttribute("src","assets/sounds/alarm1.mp3");
     }
     else {          // Answer not selected in time allowed
         $("#result").html("Times's Up!").css("color","red");
@@ -182,10 +185,15 @@ function checkAnswer(btnVal,question){
     disableButtons();
     if (btnVal === question.correctAns) {
         numCorrect++;
+        var correctSound = document.createElement("audio");
+        correctSound.setAttribute("src", "assets/sounds/alarm3.mp3");
         return true;
+        
     }
     else {
         numWrong++;
+        var incorrectSound = document.createElement("audio");
+        incorrectSound.setAttribute("src","assets/sounds/alarm1.mp3");
         return false;
     }
 }
