@@ -63,6 +63,29 @@ var questions = [q1,q2];
 
 // Functions & Objects
 
+ 
+$("#btn1").mouseover (function (){  
+    var btn1Sound = document.createElement("audio");
+    btn1Sound.setAttribute("src", "assets/sounds/sound1.mp3");
+    btn1Sound.play();
+});
+$("#btn2").mouseover (function (){  
+    var btn2Sound = document.createElement("audio");
+    btn2Sound.setAttribute("src", "assets/sounds/choose2.mp3");
+    btn2Sound.play();
+});
+$("#btn3").mouseover (function (){  
+    var btn3Sound = document.createElement("audio");
+    btn3Sound.setAttribute("src", "assets/sounds/choose1.mp3");
+    btn3Sound.play();
+});
+$("#btn4").mouseover (function (){  
+    var btn4Sound = document.createElement("audio");
+    btn4Sound.setAttribute("src", "assets/sounds/sound2.mp3");
+    btn4Sound.play();
+});
+
+
 // The following code loads the code above,the 'new' TriviaQuestion variables, and pairs the info with values stored in the TriviaQuestion function in sequential order
 function TriviaQuestion (question,ans1,ans2,ans3,ans4,correctAns,ansInfo,ansImg) {
     this.question = question;
@@ -129,15 +152,20 @@ function displayAnswer(a,r,q) {
     if (a) {            // Correct answer selected
         $("#result").html("Correct!").css("color","green");
         var correctSound = document.createElement("audio");
-        correctSound.setAttribute("src", "assets/sounds/alarm3.mp3");
+        correctSound.setAttribute("src", "assets/sounds/alarm2.mp3");
+        correctSound.play()
     }
     else if(r === 0) {      // Wrong Answer selected
         $("#result").html("Wrong!").css("color","red");
         var incorrectSound = document.createElement("audio");
         incorrectSound.setAttribute("src","assets/sounds/alarm1.mp3");
+        incorrectSound.play();
     }
     else {          // Answer not selected in time allowed
         $("#result").html("Times's Up!").css("color","red");
+        var outSound = document.createElement("audio");
+        outSound.setAttribute("src","assets/sounds/alarm3.mp3");
+        outSound.play();
         numWrong++;
     }
     
@@ -185,15 +213,11 @@ function checkAnswer(btnVal,question){
     disableButtons();
     if (btnVal === question.correctAns) {
         numCorrect++;
-        var correctSound = document.createElement("audio");
-        correctSound.setAttribute("src", "assets/sounds/alarm3.mp3");
         return true;
         
     }
     else {
         numWrong++;
-        var incorrectSound = document.createElement("audio");
-        incorrectSound.setAttribute("src","assets/sounds/alarm1.mp3");
         return false;
     }
 }
@@ -216,14 +240,20 @@ function gameOver() {
 
 function secondCountdown() {
     timeRemaining--;
-
+    var tickSound = document.createElement("audio");
+        tickSound.setAttribute("src","assets/sounds/beep2.mp3");
+        tickSound.play();
     if (timeRemaining <= 10) {       // Warn user time is running out
         $("#timeRemaining").html("Time Remaining: "+timeRemaining+" seconds").css("color","red");
-    }
-    else {
-        $("#timeRemaining").html("Time Remaining: "+timeRemaining+" seconds").css("color","white");   
+        var outSound = document.createElement("audio");
+        outSound.setAttribute("src","assets/sounds/beep1.mp3");
+        outSound.play();
+        tickSound.pause();
+    } else {
+        $("#timeRemaining").html("Time Remaining: "+timeRemaining+" seconds").css("color","white");  
     }
     $("#nextQuestionTime").html("Next Question in: "+timeRemaining+" seconds");
+    
 }
 
 function disableButtons() {
