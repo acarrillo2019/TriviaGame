@@ -19,16 +19,16 @@ On the final screen, show the number of correct answers, incorrect answers, and 
 
 $(document).ready(function() {
 
-    var startSound = document.createElement("audio");
-        startSound.setAttribute("src","assets/sounds/port.mp3");
-        startSound.play();
+    start();
 
-    restartQuiz();
+    
 
     $("button").on("click", function() {
     
         // If Restart Quiz button pressed, then restart the quiz
         if ($(this).attr("id") === "restartQuiz") {
+            restartQuiz();
+        } else if ($(this).attr("id") === "startQuiz") {
             restartQuiz();
         }
         // Quiz answer button pressed, check answer
@@ -41,6 +41,10 @@ $(document).ready(function() {
 
 
 });
+
+
+
+
 
 // Global Variables & Constants
 
@@ -244,10 +248,30 @@ function gameOver() {
     clearQuestion(); // Clear the question
     displayStats(); // Show the correct/wrong answer stats
     clearTimeout(secondTimer); // Stop the second timer
+    $("#startQuiz").hide();
     var endSound = document.createElement("audio");
         endSound.setAttribute("src","assets/sounds/reading.mp3");
         endSound.play();
 }
+
+
+function start() {
+    clearStats();
+    questionIndex = 0;
+    clearTimeout(answerTimer); // Stop the question timer
+    clearInterval(secondTimer); // Stop the second timer
+    clearTimeout(secondTimer);
+    $("#btn1").hide();
+    $("#btn2").hide();
+    $("#btn3").hide();
+    $("#btn4").hide();
+    $("#start").hide();
+    $("#timeRemaining").hide();
+
+    
+}
+
+
 
 function secondCountdown() {
     timeRemaining--;
