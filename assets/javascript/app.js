@@ -238,6 +238,7 @@ function restartQuiz() {
     questionIndex = 0; // reset the question index for new quiz
     shuffleArray(questions); // Shuffle the questions so its not the same quiz
     displayQuestion(questions[questionIndex]); // display the first question
+    $("#startQuiz").hide();
     var startSound = document.createElement("audio");
         startSound.setAttribute("src","assets/sounds/port.mp3");
         startSound.play();
@@ -265,7 +266,6 @@ function start() {
     $("#btn2").hide();
     $("#btn3").hide();
     $("#btn4").hide();
-    $("#start").hide();
     $("#timeRemaining").hide();
 
     
