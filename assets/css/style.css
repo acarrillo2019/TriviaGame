@@ -10,7 +10,7 @@ h1, h2, h3, h4, h5, h6, p {
 }
 
 .jumbotron {
-    background-image: url(../images/deadspacelogo.jpg);
+    background-image: url(../images/deadspacelogo2.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -33,3 +33,8 @@ h1, h2, h3, h4, h5, h6, p {
     color: white;
 }
 
+@media only screen and (max-width: 900px) {
+    .jumbotron {
+        background-image: url(../images/deadspacelogo.jpg);
+    }
+  }
