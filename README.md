@@ -1,5 +1,26 @@
-# TriviaGame
+# DEAD SPACE TriviaGame
 5: Trivia Game - University of Arizona Full Stack Flex Web Developer Coding Bootcamp assignment. In this assignment, we create a Trivia game using JavaScript for the logic and jQuery to manipulate HTML.
+
+![](/screenshots/ds_1.PNG)
+
+# Description
+The DEAD SPACE Trivia game is based off the legendary video game series, DEAD SPACE. There is a ticking countdown clock per question. A user has thirty seconds to answer the question, when the count down clock turns red and changes sound. When a user hovers on possible answer, the answer plays a sound. 
+
+
+![](/screenshots/ds_2.PNG)
+
+
+There are differing sounds based on whether the user guessed right OR wrong. There are also differing sounds for when a user runs out of time, starts the game or finishes a game. 
+
+
+![](/screenshots/ds_3.PNG)
+
+
+All sounds are taken directly from the DEAD SPACE video game.
+
+
+![](/screenshots/ds_4.PNG)
+
 
 Changes since last version:
 - Countdown turns red when reaches 10
