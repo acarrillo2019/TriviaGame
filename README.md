@@ -4,7 +4,7 @@
 ![](/screenshots/ds_1.PNG)
 
 # Description
-The DEAD SPACE Trivia game is based off the legendary video game series, DEAD SPACE. There is a ticking countdown clock per question. A user has thirty seconds to answer the question, when the count down clock turns red and changes sound. When a user hovers on possible answer, the answer plays a sound. 
+The DEAD SPACE Trivia game is based off the legendary video game series, DEAD SPACE. There is a ticking countdown clock per question. A user has thirty seconds to answer the question, when the count down clock turns red and changes sound. When a user hovers on possible answer, the answer plays a sound. Whether a question is answered correctly or not, there is a brief explanation of the true answer.
 
 
 ![](/screenshots/ds_2.PNG)
@@ -17,6 +17,8 @@ There are differing sounds based on whether the user guessed right OR wrong. The
 
 
 All sounds are taken directly from the DEAD SPACE video game.
+
+Sorry about the spoilers.
 
 
 ![](/screenshots/ds_4.PNG)
